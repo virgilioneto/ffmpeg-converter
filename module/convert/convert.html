@@ -1,0 +1,30 @@
+<form>
+    <div class="row">
+        <div class="form-group col-sm-6 col-md-6">
+            <label class="control-label">From directory</label>
+            <p class="form-control-static">{{fromDir}}</p>
+        </div>
+        <div class="form-group col-sm-6  col-md-6">
+            <label class="control-label">To directory</label>
+            <p class="form-control-static">{{toDir}}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <table class="table table-striped">
+                <tr>
+                    <th>File</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="file in fromFiles">
+                    <td>{{file.name}}</td>
+                    <td><a ng-click="markFile($index)" class="btn btn-sm" ng-class="{'btn-danger': file.checked, 'btn-success': !file.checked}">{{file.text}}</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <a ng-click="convertSelected()" class="btn btn-primary">Submit</a>
+    <a ui-sref="dashboard" class="btn btn-default">Cancel</a>
+</form>

@@ -1,0 +1,35 @@
+{
+  "name": "ffmpeg-converter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/electron ."
+  },
+  "keywords": [],
+  "author": "Virgilio Missão Neto <virgilio.missao.neto@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^3.18.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-config-standard-jsx": "^3.3.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-standard": "^2.1.1",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-electron-installer": "^2.1.0",
+    "load-grunt-tasks": "^3.5.2",
+    "standard": "^9.0.2",
+    "time-grunt": "^1.4.0"
+  },
+  "dependencies": {
+    "angular": "^1.6.3",
+    "angular-ui-router": "^0.4.2",
+    "async": "^2.2.0",
+    "bootstrap": "^3.3.7",
+    "electron": "^1.6.2",
+    "izimodal": "^1.4.2",
+    "izitoast": "^1.1.1"
+  }
+}

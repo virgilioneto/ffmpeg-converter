@@ -1,0 +1,16 @@
+<form>
+    <div class="form-group">
+        <label for="from" class="control-label">From directory</label>
+        <input type="text" class="form-control" id="from" placeholder="From directory" ng-model="fromDir" ng-click="selectFileDir('from')">
+    </div>
+    <div class="form-group">
+        <label for="to" class="control-label">To directory</label>
+        <input type="text" class="form-control" id="to" placeholder="To directory" ng-model="toDir" ng-click="selectFileDir('to')">
+    </div>
+    <!--<div class="form-group">
+        <label for="upload">Upload directory</label>
+        <input type="text" class="form-control" id="upload" placeholder="Upload directory" ng-model="uploadDir" ng-click="selectFileDir('upload')">
+    </div>-->
+    <a ng-click="save()" class="btn btn-primary">Submit</a>
+    <a ui-sref="dashboard" class="btn btn-default">Cancel</a>
+</form>
