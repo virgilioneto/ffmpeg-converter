@@ -10,9 +10,10 @@ class FFMPEG {
     let fromPath = `${Setting.getProperty('fromDir')}/${sourceFile}`
     let toPath = `${Setting.getProperty('toDir')}/${sourceFile}`
     let params = ['-i', fromPath].concat(extraArgs)
+    let ffmpegDir = Setting.getProperty('ffmpegDir')
     toPath = toPath.replace(path.extname(toPath), toExtension)
     params.push(toPath)
-    Process.spawn(callback, `${BIN_PATH}/ffmpeg.exe`, ...params)
+    Process.spawn(callback, `${ffmpegDir}/ffmpeg.exe`, ...params)
   }
 
   static batchConvert (callback, sourceFileList, toExtension = '.mp4', extraArgs = ['-y', '-v', 'error', '-c', 'copy', '-copyts']) {

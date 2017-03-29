@@ -11,6 +11,10 @@
         <label for="upload">Upload directory</label>
         <input type="text" class="form-control" id="upload" placeholder="Upload directory" ng-model="uploadDir" ng-click="selectFileDir('upload')">
     </div>-->
+    <div class="form-group">
+        <label for="ffmpeg" class="control-label">FFMPEG directory</label>
+        <input type="text" class="form-control" id="ffmpeg" placeholder="FFMPEG directory" ng-model="ffmpegDir" ng-click="selectFileDir('ffmpeg')">
+    </div>
     <a ng-click="save()" class="btn btn-primary">Submit</a>
     <a ui-sref="dashboard" class="btn btn-default">Cancel</a>
 </form>
