@@ -29,7 +29,10 @@
     "async": "^2.2.0",
     "bootstrap": "^3.3.7",
     "electron": "^1.6.2",
+    "font-awesome": "^4.7.0",
+    "fs-readdir-recursive": "^1.0.0",
     "izimodal": "^1.4.2",
-    "izitoast": "^1.1.1"
+    "izitoast": "^1.1.1",
+    "mkdirp": "^0.5.1"
   }
 }

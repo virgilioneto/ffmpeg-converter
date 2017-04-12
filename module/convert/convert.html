@@ -1,30 +1,84 @@
 <form>
     <div class="row">
         <div class="form-group col-sm-6 col-md-6">
-            <label class="control-label">From directory</label>
-            <p class="form-control-static">{{fromDir}}</p>
+            <label for="from" class="control-label">From directory</label>
+            <input type="text" class="form-control" id="from" placeholder="From directory" ng-model="fromDir" ng-click="selectFileDir('from')">
         </div>
-        <div class="form-group col-sm-6  col-md-6">
-            <label class="control-label">To directory</label>
-            <p class="form-control-static">{{toDir}}</p>
+        <div class="form-group col-sm-6 col-md-6">
+            <label for="to" class="control-label">To directory</label>
+            <input type="text" class="form-control" id="to" placeholder="To directory" ng-model="toDir" ng-click="selectFileDir('to')">
         </div>
     </div>
 
     <div class="row">
-        <div class="col-sm-12 col-md-12">
+        <div class="btn-group col-sm-2 col-md-2">
+            <label class="control-label">Input Format</label><br>
+            <a class="btn btn-sm" ng-class="{'btn-primary': hasInput('.flv'), 'btn-default': !hasInput('.flv')}" ng-click="checkInput('.flv')">.flv</a>
+            <a class="btn btn-sm" ng-class="{'btn-primary': hasInput('.f4v'), 'btn-default': !hasInput('.f4v')}" ng-click="checkInput('.f4v')">.f4v</a>
+            <a class="btn btn-sm" ng-class="{'btn-primary': hasInput('.mkv'), 'btn-default': !hasInput('.mkv')}" ng-click="checkInput('.mkv')">.mkv</a>
+        </div>
+        <div class="btn-group col-sm-2 com-md-2">
+            <label class="control-label">Recursive</label><br>
+            <a class="btn btn-sm" ng-class="{'btn-primary': recursive, 'btn-default': !recursive}" ng-click="setRecursion(true)">Yes</a>
+            <a class="btn btn-sm" ng-class="{'btn-primary': !recursive, 'btn-default': recursive}" ng-click="setRecursion(false)">No</a>
+        </div>
+        <div class="btn-group col-sm-2 com-md-2">
+            <label class="control-label">Save in Source Dir</label><br>
+            <a class="btn btn-sm" ng-class="{'btn-primary': saveToSource, 'btn-default': !saveToSource}" ng-click="setDestAsSource(true)">Yes</a>
+            <a class="btn btn-sm" ng-class="{'btn-primary': !saveToSource, 'btn-default': saveToSource}" ng-click="setDestAsSource(false)">No</a>
+        </div>
+        <div class="btn-group col-sm-2 com-md-2">
+            <label class="control-label">Keep File Structure</label><br>
+            <a class="btn btn-sm" ng-class="{'btn-primary': keepStructure, 'btn-default': !keepStructure}" ng-click="setKeepStructure(true)">Yes</a>
+            <a class="btn btn-sm" ng-class="{'btn-primary': !keepStructure, 'btn-default': keepStructure}" ng-click="setKeepStructure(false)">No</a>
+        </div>
+        <div class="form-group col-sm-2 com-md-2">
+            <label class="control-label">Output Format</label><br>
+            <a class="btn btn-sm btn-default disabled">.mp4</a>
+        </div>
+    </div>
+
+    <div class="btn-group">
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12" style="max-height: 535px; overflow: auto">
             <table class="table table-striped">
                 <tr>
                     <th>File</th>
-                    <th></th>
+                    <th>
+                        <div class="btn-group">
+                            <a class="btn btn-sm btn-success" ng-click="markAllFiles(true)">Select All</a>
+                            <a class="btn btn-sm btn-danger" ng-click="markAllFiles(false)">Deselect All</a>
+                        </div>
+                    </th>
+                    <th>
+                        Conversion Status
+                    </th>
                 </tr>
                 <tr ng-repeat="file in fromFiles">
                     <td>{{file.name}}</td>
-                    <td><a ng-click="markFile($index)" class="btn btn-sm" ng-class="{'btn-danger': file.checked, 'btn-success': !file.checked}">{{file.text}}</a></td>
+                    <td>
+                        <div class="btn-group">
+                            <a ng-click="markFile($index)" class="btn btn-sm" ng-class="{'btn-primary disabled': file.checked, 'btn-default': !file.checked}">Select</a>
+                            <a ng-click="markFile($index)" class="btn btn-sm" ng-class="{'btn-primary disabled': !file.checked, 'btn-default': file.checked}">Deselect</a>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="label text-capitalize" ng-class="{'label-primary': file.status === 'pending', 'label-success': file.status === 'success', 'label-danger': file.status === 'error'}">
+                            <i class="fa" ng-class="{'fa-clock-o': file.status === 'pending', 'fa-check-circle-o': file.status === 'success', 'fa-times-circle-o': file.status === 'error'}"></i>
+                            {{file.status}}
+                        </span>
+                    </td>
                 </tr>
             </table>
         </div>
     </div>
 
-    <a ng-click="convertSelected()" class="btn btn-primary">Submit</a>
-    <a ui-sref="dashboard" class="btn btn-default">Cancel</a>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <a ng-click="convertSelected()" ng-disabled="!canStartConversion()" class="btn btn-primary">Start</a>
+            <a ui-sref="dashboard" class="btn btn-default">Cancel</a>
+        </div>
+    </nav>
 </form>

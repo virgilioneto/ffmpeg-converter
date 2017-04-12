@@ -31,12 +31,6 @@ class Process {
       }
     });
   }
-
-  static execFile (callback, application, ...args) {
-    execFile(application, args, (error) => {
-      error && handleError(`Process execution error: ${application}`, callback, args, error)
-    })
-  }
 }
 
 function handleError (message, callback, args, error) {
